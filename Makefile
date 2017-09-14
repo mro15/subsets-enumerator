@@ -1,7 +1,8 @@
 CFLAGS=-Wall
-all: subconjuntos.o
+all: subconjuntos.o prox_subconjunto.o
 	gcc -o subconjuntos subconjuntos.o $(CFLAGS)
+	gcc -o prox-subconj prox_subconjunto.o $(CFLAGS)
 
 clean:
-	rm *.o subconjuntos
+	rm *.o subconjuntos prox-subconj
 
