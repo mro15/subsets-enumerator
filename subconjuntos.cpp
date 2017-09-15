@@ -4,6 +4,7 @@
 #include <list>
 
 int cont = 0;
+
 int enumerate(int *set,  int n, int k, int offset, std::list<int> &subsets){
     int i;
     if(k==0){
@@ -14,9 +15,7 @@ int enumerate(int *set,  int n, int k, int offset, std::list<int> &subsets){
     }
     for(i=offset; i<n; ++i){
         subsets.push_back(set[i]);
-        //puts("oi");
         enumerate(set, n, k-1, i+1, subsets);
-        //puts("tchau");
         subsets.pop_back();
     }
     return 0;
@@ -36,7 +35,7 @@ int main(int argc, char *argv[]){
     for(i = 0; i<n; ++i){
         set[i] = i+1;
     }
-    /*Print set*
+    /*Print set
     for(i = 0; i<n; ++i){
         printf("%d ", set[i]);
     }
