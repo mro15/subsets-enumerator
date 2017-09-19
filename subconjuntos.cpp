@@ -39,7 +39,6 @@ int main(int argc, char *argv[]){
     for(i = 0; i<n; ++i){
         printf("%d ", set[i]);
     }*/
-    /*Array of subsets has size k*/
     std::list<int> subsets;
     enumerate(set,  n, k, 0, subsets);
     printf("%d\n", cont);
