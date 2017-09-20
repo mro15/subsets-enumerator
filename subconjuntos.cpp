@@ -9,8 +9,10 @@ int enumerate(int *set,  int n, int k, int offset, std::list<int> &subsets){
     int i;
     if(k==0){
         cont++;
-        //for(std::list<int>::iterator it=subsets.begin(); it!=subsets.end() ; ++it)
-        //    std::cout << *it << " ";
+        for(std::list<int>::iterator it=subsets.begin(); it!=subsets.end() ; ++it){
+            std::cout << *it << " ";
+        }
+        std::cout << std::endl;
         return 0;
     }
     for(i=offset; i<n; ++i){
