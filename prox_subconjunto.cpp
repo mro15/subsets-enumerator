@@ -18,62 +18,57 @@ int main(int argc, char *argv[]){
     for(i = 3; i<argc; ++i){
 		subsets.push_back(atoi(argv[i]));
 	}
-    /*Create set [1...n]*/
+    /*	Create set [1...n]
+		and insert 0's in bit_set*/
     for(i = n-1; i>=0; --i){
         set[i] = i+1;
 		bit_set[i] = 0;
     }
-    /*Print set*/
-    /*for(i = 0; i<n; ++i){
-        printf("%d ", set[i]);
-    }*/
+	/* 	bit_set[subset[it-1]]=1 
+		bit_set receives 1 in all positions that there are elements in the subset*/
     for(std::list<int>::iterator it=subsets.begin(); it!=subsets.end() ; ++it){
 		bit_set[*it-1] = 1;
 	}
-    //Print bit set
-	/*for(i = 0; i<n; ++i){
-		printf("%d ", bit_set[i]);
-	}*/
-    int bit_count = 0;
-        while(found == 0){
-		    if(bit_set[0]+1==1){
-			    carry=0;
-			    bit_set[0]=1;
-			    bit_count++;
-		    }else{
-			    carry=1;
-			    bit_set[0]=0;
-		    }
-    	    for(i = 1; i<n; ++i){
-			    if((bit_set[i] + carry)==0){
-				    bit_set[i] = 0;
-				    carry=0;
-			    }else if((bit_set[i] + carry)==1){
-				    bit_set[i] = 1;
-				    carry=0;
-				    bit_count++;
-			    }else{
-				    bit_set[i] = 0;
-				    carry=1;
-			    }
-		    }
-            //printf("\n %d \n", bit_count);
-		    /*for(i = 0; i<n; ++i){
-			    printf("%d ", bit_set[i]);
-		    }*/
-            //printf("\n");
-		    if(bit_count==k){
-			    found=1;
-                bit_count=0;
-		    }else{
-			    bit_count=0;
-		    }
-	    }
-	    for(i = 0; i<n; ++i){
-            if(bit_set[i]==1){
-		        printf("%d ", set[i]);
-            }
-	    }
+	int bit_count = 0;
+	/*	while not finding a subset of size k,
+		continues adding one to the bit_set*/
+	while(found == 0){	
+		if(bit_set[0]+1==1){
+			carry=0;
+			bit_set[0]=1;
+			bit_count++;
+		}else{
+			carry=1;
+			bit_set[0]=0;
+		}
+    	for(i = 1; i<n; ++i){
+			if((bit_set[i] + carry)==0){
+				bit_set[i] = 0;
+				carry=0;
+			}else if((bit_set[i] + carry)==1){
+				bit_set[i] = 1;
+				carry=0;
+				bit_count++;
+			}else{
+				bit_set[i] = 0;
+				carry=1;
+			}
+		}
+		/*	if the quantity of bits 1 is equal to k,
+			the next subset was found*/
+		if(bit_count==k){
+			found=1;
+       		bit_count=0;
+		}else{
+			bit_count=0;
+		}
+	}
+	/* Shows the next subset*/
+	for(i = 0; i<n; ++i){
+    	if(bit_set[i]==1){
+			printf("%d ", set[i]);
+       	}
+	}
     printf("\n");
     return 0;
 }
