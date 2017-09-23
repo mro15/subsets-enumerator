@@ -3,20 +3,25 @@
 #include <stdio.h>
 #include <list>
 
-int enumerate(int *set,  int n, int k, int offset, std::list<int> &subsets){
-    int i;
-    if(k==0){
+int enumerate(int *set, int n,  int k, int offset, std::list<int> &subsets){
+    /*	Found a subset of size k,
+		then print it and return*/
+	if(k==subsets.size()){
         for(std::list<int>::iterator it=subsets.begin(); it!=subsets.end() ; ++it){
             std::cout << *it << " ";
         }
         std::cout << std::endl;
         return 0;
     }
-    for(i=offset; i<n; ++i){
-        subsets.push_back(set[i]);
-        enumerate(set, n, k-1, i+1, subsets);
-        subsets.pop_back();
-    }
+	/*If offset equals to n just return*/
+	if(offset==n)
+		return 0;
+	/*Insert an element in subset and calls enumerate() with it*/
+    subsets.push_back(set[offset]);
+    enumerate(set,n, k, offset+1, subsets);
+	/*Removes an element from subset and calls enumerate() without it*/
+    subsets.remove(set[offset]);
+    enumerate(set, n, k, offset+1, subsets); 
     return 0;
 }
 
@@ -28,17 +33,13 @@ int main(int argc, char *argv[]){
     int *set, n, k, i;
     n = atoi(argv[1]);
     k = atoi(argv[2]);
-    //printf("n: %d, k: %d\n", n, k);
     set = new int[n];
     /*Create set [1...n]*/
     for(i = 0; i<n; ++i){
         set[i] = i+1;
     }
-    /*Print set
-    for(i = 0; i<n; ++i){
-        printf("%d ", set[i]);
-    }*/
+	/*subsets starts empty*/
     std::list<int> subsets;
-    enumerate(set,  n, k, 0, subsets);
+    enumerate(set, n, k, 0, subsets);
     return 0;
 }
