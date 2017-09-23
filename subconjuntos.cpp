@@ -3,12 +3,9 @@
 #include <stdio.h>
 #include <list>
 
-int cont = 0;
-
 int enumerate(int *set,  int n, int k, int offset, std::list<int> &subsets){
     int i;
     if(k==0){
-        cont++;
         for(std::list<int>::iterator it=subsets.begin(); it!=subsets.end() ; ++it){
             std::cout << *it << " ";
         }
@@ -43,6 +40,5 @@ int main(int argc, char *argv[]){
     }*/
     std::list<int> subsets;
     enumerate(set,  n, k, 0, subsets);
-    printf("%d\n", cont);
     return 0;
 }

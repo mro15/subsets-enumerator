@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]){
     if(argc<4){
-        printf("Uso: <subconjuntos> <k> <n> <subconjunto>\n");
+        printf("Uso: <subconjuntos> <k> <n> <subconjunto separado por espacos>\n");
         return 0;
     }
     int *set, n, k, i, *bit_set, carry=0, found=0;
@@ -24,20 +24,17 @@ int main(int argc, char *argv[]){
 		bit_set[i] = 0;
     }
     /*Print set*/
-    for(i = 0; i<n; ++i){
+    /*for(i = 0; i<n; ++i){
         printf("%d ", set[i]);
-    }
-	printf("\n");
+    }*/
     for(std::list<int>::iterator it=subsets.begin(); it!=subsets.end() ; ++it){
 		bit_set[*it-1] = 1;
 	}
     //Print bit set
-	for(i = 0; i<n; ++i){
+	/*for(i = 0; i<n; ++i){
 		printf("%d ", bit_set[i]);
-	}
-	printf("\n");
-    int bit_count = 0, perm=0;
-	while(perm<10){
+	}*/
+    int bit_count = 0;
         while(found == 0){
 		    if(bit_set[0]+1==1){
 			    carry=0;
@@ -72,17 +69,11 @@ int main(int argc, char *argv[]){
 			    bit_count=0;
 		    }
 	    }
-        perm++;
-        found=0;
-        carry=0;
-        //bit_count=0;
 	    for(i = 0; i<n; ++i){
             if(bit_set[i]==1){
 		        printf("%d ", set[i]);
             }
 	    }
-        printf("\n");
-    }
     printf("\n");
     return 0;
 }
