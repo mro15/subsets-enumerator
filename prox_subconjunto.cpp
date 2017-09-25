@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
     for(i = 3; i<argc; ++i){
 		subsets.push_back(atoi(argv[i]));
 	}
-    /*	Create set [1...n]
+    /*	Create set n ... 1]
 		and insert 0's in bit_set*/
     for(i = n-1; i>=0; --i){
         set[i] = i+1;
